@@ -6,5 +6,5 @@ import React from "react";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const { password } = useAuthContext();
-  return password !== null ? children : redirect("http://localhost:3000/");
+  return password !== null ? children : redirect(process.env.BASE_URL!);
 }

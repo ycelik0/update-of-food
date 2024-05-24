@@ -30,7 +30,7 @@ export default function UpdateFood({ food }: { food: Food }) {
   const onNext = async () => {
     try {
       if (food.name !== englishName || food.nlName !== dutchName)
-        await axios.post(`http://localhost:3000/api/food/${id}`, {
+        await axios.post(`${process.env.BASE_URL}/api/food/${id}`, {
           name: englishName,
           nlName: dutchName,
         });
