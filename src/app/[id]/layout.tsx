@@ -6,5 +6,5 @@ import React from "react";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const { password } = useAuthContext();
-  return password !== null ? children : redirect(window.location.host);
+  return password !== null ? children : redirect(window.location.origin);
 }

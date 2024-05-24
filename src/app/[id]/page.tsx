@@ -5,7 +5,7 @@ import FoodItem from "./FoodItem";
 export default async function Page({ params }: { params: { id: string } }) {
   try {
     const response = await axios.get(
-      `${window.location.host}/api/food/${params.id}`
+      `${window.location.origin}/api/food/${params.id}`
     );
     return <FoodItem food={response.data.food} />;
   } catch (error) {

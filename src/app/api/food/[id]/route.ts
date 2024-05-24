@@ -20,7 +20,6 @@ export async function POST(request: Request) {
   const splitHref = href.split("/");
   const id = splitHref[splitHref.length - 1];
   const body = await request.json();
-  console.log(body.name, body.nlName);
   const whereClause = sql`id = ${id}`;
 
   await db

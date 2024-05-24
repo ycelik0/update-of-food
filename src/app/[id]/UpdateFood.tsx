@@ -20,7 +20,7 @@ export default function UpdateFood({ food }: { food: Food }) {
   };
 
   const onPrevious = () => {
-    let url = window.location.href.split("/");
+    let url = window.location.origin.split("/");
     url.pop();
     url.push((Number(id) - 1).toString());
     const prevURL = url.join("/");
@@ -30,11 +30,11 @@ export default function UpdateFood({ food }: { food: Food }) {
   const onNext = async () => {
     try {
       if (food.name !== englishName || food.nlName !== dutchName)
-        await axios.post(`${window.location.host}/api/food/${id}`, {
+        await axios.post(`${window.location.origin}/api/food/${id}`, {
           name: englishName,
           nlName: dutchName,
         });
-      let url = window.location.href.split("/");
+      let url = window.location.origin.split("/");
       url.pop();
       url.push((Number(id) + 1).toString());
       const nextURL = url.join("/");

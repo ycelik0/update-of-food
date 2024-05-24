@@ -11,7 +11,7 @@ export default function Home() {
 
   const onCheck = async () => {
     try {
-      const res = await axios.post(`${window.location.host}/api/password`, {
+      const res = await axios.post(`${window.location.origin}/api/password`, {
         password: password_,
       });
       setPassword(password_);
@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return password !== null ? (
-    redirect(`${window.location.host}/1`)
+    redirect(`${window.location.origin}/1`)
   ) : (
     <div className="flex justify-center items-start mt-20 w-screen h-screen">
       <div className="flex flex-col justify-center gap-4 bg-slate-200 p-4 min-w-[25rem] max-w-[30rem]">
