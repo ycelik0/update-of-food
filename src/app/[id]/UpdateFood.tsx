@@ -1,5 +1,6 @@
 "use client";
 
+import useAuthContext from "@/lib/hooks/useAuthContext";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import React, { useEffect, useState } from "react";
 export default function UpdateFood({ food }: { food: Food }) {
   const id = useParams().id as string;
   const router = useRouter();
+  const { password } = useAuthContext();
 
   const [englishName, setEnglishName] = useState(food.name);
   const [dutchName, setDutchName] = useState(food.nlName);
@@ -30,6 +32,7 @@ export default function UpdateFood({ food }: { food: Food }) {
         await axios.post(`${window.location.origin}/api/food/${id}`, {
           name: englishName,
           nlName: dutchName,
+          password,
         });
       const url = `${window.location.origin}/${(Number(id) + 1).toString()}`;
       router.push(url);

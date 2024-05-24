@@ -26,7 +26,7 @@ export default function FoodItem({ food }: { food: Food }) {
           <p>Alleen als je op next klikt update hij de namen.</p>
           <p>Niet de inputs aanraken als je het niet wilt updaten.</p>
           <p>
-            Als je op previous klikt laat hij de auto resultaat zien. refresh om
+            Als je op previous klikt laat hij de oude resultaat zien. refresh om
             de nieuwe te zien.
           </p>
         </div>

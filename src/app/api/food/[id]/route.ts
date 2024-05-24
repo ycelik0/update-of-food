@@ -22,10 +22,13 @@ export async function POST(request: Request) {
   const body = await request.json();
   const whereClause = sql`id = ${id}`;
 
-  await db
-    .update(food)
-    .set({ name: body.name, nlName: body.nlName })
-    .where(whereClause);
+  if (body.password === process.env.WEBSITE_PASSWORD)
+    await db
+      .update(food)
+      .set({ name: body.name, nlName: body.nlName })
+      .where(whereClause);
 
-  return new NextResponse();
+  return new NextResponse(undefined, {
+    status: body.password === process.env.WEBSITE_PASSWORD ? 200 : 401,
+  });
 }
