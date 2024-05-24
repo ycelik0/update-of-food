@@ -5,7 +5,7 @@ import useAuthContext from "@/lib/hooks/useAuthContext";
 import { redirect } from "next/navigation";
 import axios from "axios";
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home() {
   const { password, setPassword } = useAuthContext();
   const [password_, setPassword_] = useState("");
 
