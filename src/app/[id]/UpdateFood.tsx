@@ -20,11 +20,8 @@ export default function UpdateFood({ food }: { food: Food }) {
   };
 
   const onPrevious = () => {
-    let url = window.location.origin.split("/");
-    url.pop();
-    url.push((Number(id) - 1).toString());
-    const prevURL = url.join("/");
-    router.push(prevURL);
+    const url = `${window.location.origin}/${(Number(id) - 1).toString()}`;
+    router.push(url);
   };
 
   const onNext = async () => {
@@ -34,11 +31,8 @@ export default function UpdateFood({ food }: { food: Food }) {
           name: englishName,
           nlName: dutchName,
         });
-      let url = window.location.origin.split("/");
-      url.pop();
-      url.push((Number(id) + 1).toString());
-      const nextURL = url.join("/");
-      router.push(nextURL);
+      const url = `${window.location.origin}/${(Number(id) + 1).toString()}`;
+      router.push(url);
     } catch (error) {
       console.error(error);
     }
