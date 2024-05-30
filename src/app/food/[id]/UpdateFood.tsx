@@ -3,7 +3,7 @@
 import useAuthContext from "@/lib/hooks/useAuthContext";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function UpdateFood({ food }: { food: Food }) {
   const id = useParams().id as string;
@@ -12,6 +12,7 @@ export default function UpdateFood({ food }: { food: Food }) {
 
   const [englishName, setEnglishName] = useState(food.name);
   const [dutchName, setDutchName] = useState(food.nlName);
+  const [skipValue, setSkipValue] = useState(id);
 
   const onChangeEnglish: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEnglishName(e.target.value);
@@ -22,7 +23,7 @@ export default function UpdateFood({ food }: { food: Food }) {
   };
 
   const onPrevious = () => {
-    const url = `${window.location.origin}/${(Number(id) - 1).toString()}`;
+    const url = `${window.location.origin}/food/${(Number(id) - 1).toString()}`;
     router.push(url);
   };
 
@@ -34,11 +35,18 @@ export default function UpdateFood({ food }: { food: Food }) {
           nlName: dutchName,
           password,
         });
-      const url = `${window.location.origin}/${(Number(id) + 1).toString()}`;
+      const url = `${window.location.origin}/food/${(
+        Number(id) + 1
+      ).toString()}`;
       router.push(url);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const onSkip = () => {
+    const url = `${window.location.origin}/food/${skipValue}`;
+    router.push(url);
   };
 
   return (
@@ -73,6 +81,14 @@ export default function UpdateFood({ food }: { food: Food }) {
           Next
         </button>
       </div>
+      <input
+        type="number"
+        value={skipValue}
+        onChange={(e) => setSkipValue(e.target.value)}
+      />
+      <button className="bg-blue-400 p-2 rounded-lg min-w-24" onClick={onSkip}>
+        Skip
+      </button>
     </>
   );
 }
